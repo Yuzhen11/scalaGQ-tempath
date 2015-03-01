@@ -6,8 +6,8 @@ LDFLAGS = -lhdfs -Wno-deprecated -O2
 
 all: run
 
-run: latest.cpp
-	$(CCOMPILE) latest.cpp $(CPPFLAGS) $(LIB) $(LDFLAGS)  -o run
+run: shortestT.cpp
+	$(CCOMPILE) shortestT.cpp $(CPPFLAGS) $(LIB) $(LDFLAGS)  -o run
 	./kill.py
 clean:
 	-rm run
