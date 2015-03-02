@@ -4,10 +4,12 @@ CPPFLAGS= -I$(HADOOP_HOME)/src/c++/libhdfs -I$(JAVA_HOME)/include -I$(JAVA_HOME)
 LIB = -L$(HADOOP_HOME)/c++/$(PLATFORM)/lib
 LDFLAGS = -lhdfs -Wno-deprecated -O2
 
+file=latestT.cpp
+
 all: run
 
-run: shortestT.cpp
-	$(CCOMPILE) shortestT.cpp $(CPPFLAGS) $(LIB) $(LDFLAGS)  -o run
+run: $(file)
+	$(CCOMPILE) $(file) $(CPPFLAGS) $(LIB) $(LDFLAGS)  -o run
 	./kill.py
 clean:
 	-rm run

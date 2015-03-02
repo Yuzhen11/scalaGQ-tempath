@@ -82,7 +82,7 @@ public:
 		{
 			qvalue().vis = 0;
 			qvalue().arrivalTime = -1;
-			if (nqvalue().originalID == get_query()[0]) 
+			if (nqvalue().originalID == get_query()[1]) 
 			{
 				qvalue().vis = 1;
 				send_message(nqvalue().toOriginalId, nqvalue().timestamp);
@@ -94,7 +94,7 @@ public:
 		{
 			if (nqvalue().timestamp < 0) //virtual vertex
 			{
-				if (nqvalue().originalID == get_query()[0]) 
+				if (nqvalue().originalID == get_query()[1]) 
 		        {
 		        	qvalue().arrivalTime = 0;
 		        }
@@ -118,7 +118,7 @@ public:
     }
 };
 
-class pathWorker : public WorkerOL<pVertex>{
+class pathWorker : public WorkerOL_auto<pVertex>{
     char buf[1000];
 public:
     virtual pVertex* toVertex(char * line)
@@ -157,7 +157,7 @@ public:
     {
         for (int i = 0; i < vertex_vec.size(); ++ i)
         {
-        	if (vertex_vec[i]->nqvalue().originalID == get_query()[0]
+        	if (vertex_vec[i]->nqvalue().originalID == get_query()[1]
         	&& vertex_vec[i]->nqvalue().timestamp >= 0)
         		activate(i);
         }
@@ -166,7 +166,7 @@ public:
     {
         if (v->nqvalue().timestamp < 0)
     	{
-			cout << v->nqvalue().originalID << " " << v->qvalue().arrivalTime << endl; 
+			//cout << v->nqvalue().originalID << " " << v->qvalue().arrivalTime << endl; 
 		    sprintf(buf, "%d %d\n", v->nqvalue().originalID, v->qvalue().arrivalTime);
 		    writer.write(buf);
         }

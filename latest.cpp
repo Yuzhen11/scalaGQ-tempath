@@ -103,7 +103,7 @@ public:
     {
         if (superstep() == 1)
         {
-            if (id == get_query()[0]) 
+            if (id == get_query()[1]) 
             {
                 qvalue().arrivalTime = tstart;
                 broadcast(tstart);
@@ -131,7 +131,7 @@ public:
 
 };
 
-class pathWorker : public WorkerOL<pVertex>{
+class pathWorker : public WorkerOL_auto<pVertex>{
     char buf[1000];
 public:
     virtual pVertex* toVertex(char * line)
@@ -173,14 +173,14 @@ public:
     }
     virtual void init(VertexContainer& vertex_vec)
     {
-        int src = get_query()[0];
+        int src = get_query()[1];
         int pos = get_vpos(src);
         if (pos != -1)
             activate(pos);
     }
     virtual void dump(pVertex* v, BufferedWriter& writer)
     {
-    	cout << v->id << " " << v->qvalue().arrivalTime << endl; 
+    	//cout << v->id << " " << v->qvalue().arrivalTime << endl; 
         sprintf(buf, "%d %d\n", v->id, v->qvalue().arrivalTime);
         writer.write(buf);
     }

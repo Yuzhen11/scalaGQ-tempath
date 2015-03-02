@@ -1,0 +1,4 @@
+1: 7 0, response time 0.30886 seconds, access rate = 1
+2: 8 1, response time 0.192604 seconds, access rate = 0.4
+3: 7 2, response time 0.25404 seconds, access rate = 0.6
+Total query processing time: 0.75729 seconds
